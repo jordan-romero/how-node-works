@@ -16,6 +16,12 @@ server.on('request', (req, res) => {
   readable.on('end', () => {
     res.end();
   });
+
+  readable.on('error', (err) => {
+    console.log(err);
+    res.statusCode = 500;
+    res.end('file not found');
+  });
 });
 
 server.listen(8000, '127.0.0.1', () => {
